@@ -41,51 +41,23 @@ def main(page: ft.Page):
 
         if data =="%":
 
-            st= list(txt.value)
-            print(txt.value)
-            for elem in st: 
-                if elem == "*":
-                    mult_or_div= 0
-                elif elem =="/":
-                    mult_or_div= 1
-            ns=[]
-            if data =="%":
-                for elem in st:
-                    if elem=="*" or elem =="/":
-                        break
-                    ns.append(elem)
-                for elem in st:
-                    if elem == "*" or elem =="/" or elem =="%":
-                        break
-                    st.pop(0)
-
-                st.pop()
-
-
-            if st[0]=="*" or st[0]=="/":
-                st.pop(0)
-
-            s=len(st)
-
-            if s==1:
-                st.insert(0,"0")
-                st.insert(0,".")
-            elif s==2:
-                st.insert(0,".")
-            elif s>=3:
-                st.insert(s-2,".")
-
-
-            if mult_or_div==0:
-                st.insert(0,"*")
-            elif mult_or_div==1:
-                st.insert(0,"/")
-
-            s=len(st)
-            for i in range(s):
-                ns.append(st[i])
-
-            txt.value = ns
+           st= list(txt.value)
+           base= ["/","1","0","0"]
+           i=0
+           for elem in st:
+               
+               i+= 1
+               if elem == "*" or elem =="/" or elem =="%":
+                   st.insert(i,"(")
+                   st.pop()
+                   st.append(")")
+                   break   
+           for i in range(4):
+               st.append(base[i])
+               
+           txt.value= "".join(map(str,st))
+           txt.value = str(eval(txt.value))
+           page.update()
 
     txt = ft.TextField(
         read_only=True,
