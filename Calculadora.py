@@ -60,7 +60,8 @@ def main(page: ft.Page):
            page.update()
 
     txt = ft.TextField(
-        read_only=True,
+        read_only=False,
+        
         border_color="#060606",
         text_style=ft.TextStyle(size=20, color="#f6f6f6"),
         text_align= ft.TextAlign.RIGHT,
@@ -116,10 +117,13 @@ def main(page: ft.Page):
              controls=[
                 ft.ElevatedButton(text="0",expand=2, color="#f6f6f6", bgcolor="#313131", data="0", on_click=keyboard),
                 ft.ElevatedButton(text=".", color="#f6f6f6", bgcolor="#313131", data=".", on_click=keyboard),
-                ft.ElevatedButton(text="=", bgcolor="#fe9505", color = "#f6f6f6",data="=", on_click=keyboard),
+                ft.ElevatedButton(text="=", bgcolor="#fe9505", color = "#f6f6f6",data="=", on_click=keyboard ),
+            
+                
             ]
         ),
     )
+
 
 
 ft.app(target=main)
