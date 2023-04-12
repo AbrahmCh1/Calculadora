@@ -1,3 +1,6 @@
+#Código ejemplo base de flet
+#Editor: Abraham Chávez
+
 import flet as ft
 import math
 
