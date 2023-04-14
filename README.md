@@ -10,3 +10,4 @@ pueden llegar a ser muy confusas y requieren de mucho más código.
 Para el proyecto únicamente utilizamos la librería Flet y la librería Math, el proyecto aún no está
 finalizado ya que me encontré con unos cuantos errores al momento de querer implementar un botón de 
 porcentaje, esto por la sintaxis que utiliza python al momento de realizar operaciones matemáticas.
+
