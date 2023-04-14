@@ -4,6 +4,51 @@
 import flet as ft
 import math
 
+def suma(st):
+           
+            base= ["/","1","0","0",")"]
+            propina=[]
+            symb= []
+            i=0
+            for elem in st:
+            
+                i+= 1
+                if elem == "*" or elem =="/" or elem =="%" or elem =="+" or elem =="-":
+                    if elem =="+" or elem =="-":
+                        st[i-1] = "*" 
+                        propina.insert(0,elem)
+                        st.insert(i,"(")
+
+                    symb.append(elem)
+                    st.insert(i,"(")
+                    st.pop()
+                    st.append(")")
+                    break   
+                elif elem != "*" or elem != "/" or elem != "%" or elem != "+" or elem != "-":
+                    propina.append(elem)
+
+            for i in range(5):
+                st.append(base[i])
+
+            if symb[0] == "+" or symb[0] == "-":
+                for i in range(len(propina)):
+                    st.append(propina[i])
+            return(st)
+
+def mult(st):
+    base= ["/","1","0","0"]
+    i=0
+    for elem in st:
+            
+            i+= 1
+            if elem == "*" or elem =="/" or elem =="%":
+                st.insert(i,"(")
+                st.pop()
+                st.append(")")
+                break   
+    for i in range(4):
+            st.append(base[i])
+               
 
 def main(page: ft.Page):
     page.title = "Calculator"
@@ -40,30 +85,29 @@ def main(page: ft.Page):
             page.update()
 
         if data =="%":
-
-           st= list(txt.value)
-           base= ["/","1","0","0"]
-           i=0
-           for elem in st:
-               
-               i+= 1
-               if elem == "*" or elem =="/" or elem =="%":
-                   st.insert(i,"(")
-                   st.pop()
-                   st.append(")")
-                   break   
-           for i in range(4):
-               st.append(base[i])
-               
-           txt.value= "".join(map(str,st))
-           txt.value = str(eval(txt.value))
-           page.update()
+             st= list(txt.value)
+             for elem in st:
+                if elem == "*" or elem =="/":
+                     mult(st)
+                     break
+      
+                elif elem == "+" or elem =="-":
+                    suma(st)
+                    break
+                else:
+                     txt.value = ["Error"]
+             txt.value= "".join(map(str,st))
+             txt.value = str(eval(txt.value))
+             page.update()
 
     txt = ft.TextField(
         read_only=False,
         
-        border_color="#060606",
-        text_style=ft.TextStyle(size=20, color="#f6f6f6"),
+        border_color="#a3a3a3",
+        border_width=3.2,
+        ##Make border with circular corners
+        border_radius= 15,
+        text_style=ft.TextStyle(size=20, color="#f6f6f6", font_family="Swiss 7"),
         text_align= ft.TextAlign.RIGHT,
         
     )
